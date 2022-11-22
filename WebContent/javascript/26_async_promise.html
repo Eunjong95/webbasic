@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">			
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>		
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>	
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>		
+		<script> 
+			//arrow 
+			//Promise 생성하고 리턴하는 함수
+			function work() {
+				let promise = new Promise((resolve, reject) => { 
+					//실제 작업 내용 정의 (시간을 필요로 하는 작업-producing code)
+					//...
+					let result = true;	//여기 true로 결정해놔서 function 함수에서 resolve의 실행 결과가 출력 됨				
+					if(result) {
+						resolve("success");
+					} else {
+						reject("fail");
+					}
+				});				
+				return promise;
+			}			
+			//Button의 Click 이벤트가 발생했을 때 실행하는 함수
+			function fun1() {
+				console.log("이벤트 처리 시작"); //work().then()과 별개로 계속 진행 
+				
+				//Promise 실행 방법(consuming code)
+				work().then(
+					(value) => {console.log(value + ": 네트워크 통신 완료")},
+					(value) => {console.log(value + ": 네트워크 통신 실패")}
+				); 
+				console.log("이벤트 처리 종료");
+			}
+		</script>	
+	</head>
+	<body>
+		<div class="card">
+         <div class = "card-header">Promise</div>   
+         <div class = "card_body">
+          	<button onclick="fun1()" class ="btn btn-info btn-sm">promise 실행</button>                      
+         </div>
+      </div>  
+	</body>
+</html>
